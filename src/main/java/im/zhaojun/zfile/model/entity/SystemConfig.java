@@ -1,7 +1,5 @@
 package im.zhaojun.zfile.model.entity;
 
-import lombok.Data;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,23 +7,25 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 
+import lombok.Data;
+
 /**
  * @author zhaojun
  */
-@Entity(name = "SYSTEM_CONFIG")
+@Entity(name = "system_config")
 @Data
 public class SystemConfig {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
-    @Column(name = "k")
-    private String key;
+	@Column(name = "k")
+	private String key;
 
-    @Lob
-    private String value;
+	@Lob
+	private String value;
 
-    private String remark;
+	private String remark;
 
 }

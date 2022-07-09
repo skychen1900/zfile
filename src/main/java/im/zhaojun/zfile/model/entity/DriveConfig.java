@@ -1,41 +1,41 @@
 package im.zhaojun.zfile.model.entity;
 
-import im.zhaojun.zfile.model.enums.StorageTypeEnum;
-import lombok.Data;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
+
+import im.zhaojun.zfile.model.enums.StorageTypeEnum;
+import lombok.Data;
 
 /**
  * 驱动器
  *
  * @author zhaojun
  */
-@Entity(name = "DRIVER_CONFIG")
+@Entity(name = "driver_config")
 @Data
 public class DriveConfig {
 
-    @Id
-    private Integer id;
+	@Id
+	private Integer id;
 
-    private Boolean enable;
+	private Boolean enable;
 
-    private String name;
+	private String name;
 
-    private Boolean enableCache;
+	private Boolean enableCache;
 
-    private Boolean autoRefreshCache;
+	private Boolean autoRefreshCache;
 
-    private StorageTypeEnum type;
+	private StorageTypeEnum type;
 
-    private Boolean searchEnable;
+	private Boolean searchEnable;
 
-    private Boolean searchIgnoreCase;
+	private Boolean searchIgnoreCase;
 
-    private Boolean searchContainEncryptedFile;
+	private Boolean searchContainEncryptedFile;
 
-    private Integer orderNum;
+	private Integer orderNum;
 
-    private Boolean defaultSwitchToImgMode;
+	private Boolean defaultSwitchToImgMode;
 
 }

@@ -14,15 +14,36 @@
     <artifactId>zfile</artifactId>
     <version>3.2.2</version>
     <name>zfile</name>
-    <packaging>war</packaging>
     <description>一个在线的文件浏览系统</description>
 
     <properties>
         <java.version>1.8</java.version>
         <log4j2.version>2.17.1</log4j2.version>
+        <druid.versin>1.2.8</druid.versin>
     </properties>
+    
+    <packaging>jar</packaging>
 
     <dependencies>
+
+		<!-- Javamelody -->
+		<dependency>
+			<groupId>net.bull.javamelody</groupId>
+			<artifactId>javamelody-spring-boot-starter</artifactId>
+			<version>1.91.0</version>
+		</dependency>
+    
+		<!--Druid starter-->
+		<dependency>
+		    <groupId>com.alibaba</groupId>
+		    <artifactId>druid-spring-boot-starter</artifactId>
+		    <version>${druid.versin}</version>
+		</dependency>
+    	<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>${druid.versin}</version>
+		</dependency>
 
         <!-- spring boot 官方相关 -->
         <dependency>
@@ -121,6 +142,10 @@
             <version>1.26.0</version>
         </dependency>
 
+        <dependency>
+        	<groupId>org.springframework.boot</groupId>
+        	<artifactId>spring-boot-devtools</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -129,7 +154,8 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-            <plugin>
+            <!-- WARデプロイ時に、利用する -->
+<!--             <plugin>
                 <groupId>com.uyoqu.framework</groupId>
                 <artifactId>maven-plugin-starter</artifactId>
                 <version>1.0.0</version>
@@ -147,7 +173,7 @@
                         <jvm>-Dfile.encoding=utf-8</jvm>
                     </jvms>
                 </configuration>
-            </plugin>
+            </plugin> -->
         </plugins>
     </build>
 

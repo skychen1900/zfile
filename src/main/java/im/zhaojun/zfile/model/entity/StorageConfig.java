@@ -1,9 +1,5 @@
 package im.zhaojun.zfile.model.entity;
 
-import im.zhaojun.zfile.model.enums.StorageTypeEnum;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,33 +7,37 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 
+import im.zhaojun.zfile.model.enums.StorageTypeEnum;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  * @author zhaojun
  */
-@Entity(name = "STORAGE_CONFIG")
+@Entity(name = "storage_config")
 @Data
 @NoArgsConstructor
 public class StorageConfig {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
-    private StorageTypeEnum type;
+	private StorageTypeEnum type;
 
-    @Column(name = "k")
-    private String key;
+	@Column(name = "k")
+	private String key;
 
-    private String title;
+	private String title;
 
-    @Lob
-    private String value;
+	@Lob
+	private String value;
 
-    private Integer driveId;
+	private Integer driveId;
 
-    public StorageConfig(String key, String title) {
-        this.key = key;
-        this.title = title;
-    }
+	public StorageConfig(String key, String title) {
+		this.key = key;
+		this.title = title;
+	}
 
 }

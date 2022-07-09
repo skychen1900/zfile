@@ -1,5 +1,5 @@
 zfile:
-  debug: false
+  debug: true
   directLinkPrefix: directlink
   log:
     path: ${user.home}/.zfile/logs
@@ -31,7 +31,8 @@ zfile:
     scope: offline_access User.Read Files.ReadWrite.All
 
 server:
-  port: 8080
+  # port: 8080
+  port: 5000   # AWS Elastic Beanstalkに利用する
   servlet:
     context-path: ''
   tomcat:
@@ -50,15 +51,21 @@ spring:
   datasource:
     # h2 内存数据库 配置
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:${zfile.db.path}
-    username: zfile
-    password: 123456
+    # url: jdbc:h2:${zfile.db.path}
+    url: jdbc:h2:mem:zfile  # インメモリDB
+    #username: zfile
+    #password: 123456
 
     # MySQL 配置
-  #    driver-class-name: com.mysql.jdbc.Driver
-  #    url: jdbc:mysql://127.0.0.1:3306/zfile?characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
-  #    username: root
-  #    password: 123456
+     # driver-class-name: com.mysql.jdbc.Driver
+     # url: jdbc:mysql://127.0.0.1:3306/zfile?characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
+     # username: javaapp
+     # password: Javaapp_1123
+    
+    # druid设置
+    type: com.alibaba.druid.pool.DruidDataSource
+
+
   jackson:
     date-format: yyyy-MM-dd HH:mm
     time-zone: GMT+8
