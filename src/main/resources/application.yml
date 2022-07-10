@@ -1,3 +1,8 @@
+#########################
+#
+#  Zfile
+#
+#########################
 zfile:
   debug: true
   webdav: false
@@ -31,6 +36,12 @@ zfile:
     redirectUri: https://zfile.jun6.net/onedrive/china-callback
     scope: offline_access User.Read Files.ReadWrite.All
 
+
+#########################
+#
+#  Server
+#
+#########################
 server:
   # port: 8080
   port: 5000   # AWS Elastic Beanstalkに利用する
@@ -42,18 +53,27 @@ server:
   compression:
     enabled: true
 
+
+#########################
+#
+#  Datasource
+#
+#########################
 spring:
+  # H2 for debug tool
   h2:
     console:
       settings:
         web-allow-others: true
       path: /h2-console
       enabled: ${zfile.debug}
+  
+  # Connection
   datasource:
     # h2 内存数据库 配置
     driver-class-name: org.h2.Driver
     # url: jdbc:h2:${zfile.db.path}
-    url: jdbc:h2:mem:zfile  # インメモリDB
+    url: jdbc:h2:mem:zfile  # ←インメモリDB
     #username: zfile
     #password: 123456
 
@@ -63,13 +83,16 @@ spring:
      # username: javaapp
      # password: Javaapp_1123
     
-    # druid设置
+    # druid setting
     type: com.alibaba.druid.pool.DruidDataSource
 
 
+  # JSON
   jackson:
     date-format: yyyy-MM-dd HH:mm
     time-zone: GMT+8
+  
+  # JPA
   jpa:
     hibernate:
       ddl-auto: update
@@ -79,10 +102,12 @@ spring:
     show-sql: false
     generate-ddl: true
     defer-datasource-initialization: true
+    
+  # Profile
   profiles:
     active: prod
 
-  # 初始化数据导入
+  # Initialize data import
   sql:
     init:
       continue-on-error: true
