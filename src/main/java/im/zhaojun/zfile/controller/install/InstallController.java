@@ -25,7 +25,7 @@ public class InstallController {
 
 	@GetMapping("/is-installed")
 	public ResultBean isInstall() {
-		if (!StringUtils.hasText(systemConfigService.getAdminUsername())) {
+		if (StringUtils.hasText(systemConfigService.getAdminUsername())) {
 			return ResultBean.error("请勿重复初始化");
 		}
 		return ResultBean.success();
@@ -33,7 +33,7 @@ public class InstallController {
 
 	@PostMapping("/doInstall")
 	public ResultBean install(SystemConfigDTO systemConfigDTO) {
-		if (!StringUtils.hasText(systemConfigService.getAdminUsername())) {
+		if (StringUtils.hasText(systemConfigService.getAdminUsername())) {
 			return ResultBean.error("请勿重复初始化.");
 		}
 

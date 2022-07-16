@@ -1,7 +1,5 @@
 #########################
-#
-#  Zfile
-#
+#   　App  (1/3)         #
 #########################
 zfile:
   debug: true
@@ -11,6 +9,7 @@ zfile:
     path: ${user.home}/.zfile/logs
   db:
     path: ${user.home}/.zfile/db/zfile
+    port: 8043
   tmp:
     path: ${user.home}/.zfile/tmp
   cache:
@@ -36,14 +35,11 @@ zfile:
     redirectUri: https://zfile.jun6.net/onedrive/china-callback
     scope: offline_access User.Read Files.ReadWrite.All
 
-
 #########################
-#
-#  Server
-#
+#  Server  (2/3)        #
 #########################
 server:
-  # port: 8080
+  ## port: 8080
   port: 5000   # AWS Elastic Beanstalkに利用する
   servlet:
     context-path: ''
@@ -53,64 +49,61 @@ server:
   compression:
     enabled: true
 
-
 #########################
-#
-#  Datasource
-#
+#  Spring  (3/3)        #
 #########################
 spring:
-  # H2 for debug tool
-  h2:
-    console:
-      settings:
-        web-allow-others: true
-      path: /h2-console
-      enabled: ${zfile.debug}
+  ## H2 for debug tool
+  #h2:
+    #console:
+    #  settings:
+    #    web-allow-others: true
+    #  path: /h2-console
+    #  enabled: ${zfile.debug}
   
-  # Connection
+  ## Connection
   datasource:
-    # h2 内存数据库 配置
+    ### h2 内存数据库 配置
     driver-class-name: org.h2.Driver
     # url: jdbc:h2:${zfile.db.path}
     url: jdbc:h2:mem:zfile  # ←インメモリDB
-    #username: zfile
-    #password: 123456
+    username: zfile
+    password: 123456
 
-    # MySQL 配置
+    ### MySQL 配置
      # driver-class-name: com.mysql.jdbc.Driver
      # url: jdbc:mysql://127.0.0.1:3306/zfile?characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
      # username: javaapp
      # password: Javaapp_1123
     
-    # druid setting
+    ### druid setting
     type: com.alibaba.druid.pool.DruidDataSource
-
-
-  # JSON
+    
+  ## JSON
   jackson:
     date-format: yyyy-MM-dd HH:mm
     time-zone: GMT+8
   
-  # JPA
+  ## JPA
   jpa:
     hibernate:
       ddl-auto: update
     properties:
       hibernate:
-        format_sql: false
-    show-sql: false
+        format_sql: true
+    show-sql: true    # Show SQL statement
     generate-ddl: true
     defer-datasource-initialization: true
     
-  # Profile
+  ## Profile
   profiles:
     active: prod
 
-  # Initialize data import
+  ## Initialize data import
   sql:
     init:
       continue-on-error: true
       mode: always
-      data-locations: classpath*:db/data.sql
+      data-locations: classpath*:db/*data.sql
       encoding: utf-8
+      

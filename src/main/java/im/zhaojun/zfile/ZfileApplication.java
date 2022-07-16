@@ -15,8 +15,8 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableAspectJAutoProxy(exposeProxy = true)
 public class ZfileApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(ZfileApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(ZfileApplication.class, args);
+	}
 
 }
