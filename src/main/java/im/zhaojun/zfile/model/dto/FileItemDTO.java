@@ -1,79 +1,74 @@
 package im.zhaojun.zfile.model.dto;
 
-import im.zhaojun.zfile.model.enums.FileTypeEnum;
-
 import java.io.Serializable;
 import java.util.Date;
+
+import im.zhaojun.zfile.model.enums.FileTypeEnum;
 
 /**
  * @author zhaojun
  */
 public class FileItemDTO implements Serializable {
 
-    private String name;
-    private Date time;
-    private Long size;
-    private FileTypeEnum type;
-    private String path;
-    private String url;
+	private static final long serialVersionUID = -1314409592732729522L;
+	private String name;
+	private Date time;
+	private Long size;
+	private FileTypeEnum type;
+	private String path;
+	private String url;
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public Date getTime() {
-        return time;
-    }
+	public Date getTime() {
+		return time;
+	}
 
-    public void setTime(Date time) {
-        this.time = time;
-    }
+	public void setTime(Date time) {
+		this.time = time;
+	}
 
-    public Long getSize() {
-        return size;
-    }
+	public Long getSize() {
+		return size;
+	}
 
-    public void setSize(Long size) {
-        this.size = size;
-    }
+	public void setSize(Long size) {
+		this.size = size;
+	}
 
-    public FileTypeEnum getType() {
-        return type;
-    }
+	public FileTypeEnum getType() {
+		return type;
+	}
 
-    public void setType(FileTypeEnum type) {
-        this.type = type;
-    }
+	public void setType(FileTypeEnum type) {
+		this.type = type;
+	}
 
-    public String getPath() {
-        return path;
-    }
+	public String getPath() {
+		return path;
+	}
 
-    public void setPath(String path) {
-        this.path = path;
-    }
+	public void setPath(String path) {
+		this.path = path;
+	}
 
-    public String getUrl() {
-        return url;
-    }
+	public String getUrl() {
+		return url;
+	}
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
+	public void setUrl(String url) {
+		this.url = url;
+	}
 
-    @Override
-    public String toString() {
-        return "FileItemDTO{" +
-                "name='" + name + '\'' +
-                ", time=" + time +
-                ", size=" + size +
-                ", type=" + type +
-                ", path='" + path + '\'' +
-                ", url='" + url + '\'' +
-                '}';
-    }
+	@Override
+	public String toString() {
+		return "FileItemDTO{" + "name='" + name + '\'' + ", time=" + time + ", size=" + size + ", type=" + type
+				+ ", path='" + path + '\'' + ", url='" + url + '\'' + '}';
+	}
 }
