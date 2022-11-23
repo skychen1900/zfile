@@ -1,0 +1,497 @@
+@startuml
+' Created by juanmf@gmail.com
+
+' Using left to right direction to try a better layout feel free to edit
+left to right direction
+'top to bottom direction
+' Participants 
+
+hide @unlinked
+
+class im.zhaojun.zfile.controller.admin.AdminController {
+-  systemConfigService : c SystemConfigService
+--
++   AdminController() 
++  getConfig()  :  ResultBean
++  updateConfig(c SystemConfigDTO)  :  ResultBean
++  updatePwd(c String, c String)  :  ResultBean
+
+}
+
+class im.zhaojun.zfile.service.impl.MinIOServiceImpl {
+--
++   MinIOServiceImpl() 
++  getStorageTypeEnum()  :  StorageTypeEnum
++  init(c Integer)  : void
++  storageStrategyConfigList()  :  List
+
+}
+class im.zhaojun.zfile.service.DriveConfigService {
++  STORAGE_STRATEGY_CONFIG_CLASS :  Class< StorageStrategyConfig>
+-  driveContext : c DriveContext
+-  driverConfigRepository : i DriverConfigRepository
+-  filterConfigRepository : i FilterConfigRepository
+-  shortLinkConfigRepository : i ShortLinkConfigRepository
+-  storageConfigRepository : i StorageConfigRepository
+-  zFileCache : c ZFileCache
+--
++   DriveConfigService() 
++  clearCache(c Integer)  : void
++  deleteById(c Integer)  : void
++  findById(c Integer)  :  DriveConfig
++  findByType(c StorageTypeEnum)  :  List
++  findCacheInfo(c Integer)  :  CacheInfoDTO
++  findDriveConfigDTOById(c Integer)  :  DriveConfigDTO
++  findStorageTypeById(c Integer)  :  StorageTypeEnum
++  list()  :  List
++  listOnlyEnable()  :  List
++  refreshCache(c Integer, c String)  : void
++  saveDriveConfigDTO(c DriveConfigDTO)  : void
++  saveDriveDrag( List< JSONObject>)  : void
++  selectNextId()  :  Integer
++  startAutoCacheRefresh(c Integer)  : void
++  stopAutoCacheRefresh(c Integer)  : void
++  updateCacheStatus(c Integer, c Boolean)  : void
++  updateDriveConfig(c DriveConfig)  : void
++  updateId(c Integer, c Integer)  : void
+
+}
+class im.zhaojun.zfile.service.base.AbstractOneDriveServiceBase {
+--
++   AbstractOneDriveServiceBase() 
++  getDownloadUrl(c String)  :  String
++  getType()  :  String
++  storageStrategyConfigList()  :  List
+
+}
+
+class im.zhaojun.zfile.service.impl.S3ServiceImpl {
+--
++   S3ServiceImpl() 
++  getStorageTypeEnum()  :  StorageTypeEnum
++  init(c Integer)  : void
++  storageStrategyConfigList()  :  List
+
+}
+class im.zhaojun.zfile.service.impl.WebdavServiceImpl {
+-  sardine : i Sardine
+-  storageConfigService : c StorageConfigService
+-  url : c String
+--
++   WebdavServiceImpl() 
++  fileList(c String)  :  List
++  getDownloadUrl(c String)  :  String
++  getFileItem(c String)  :  FileItemDTO
++  getStorageTypeEnum()  :  StorageTypeEnum
++  init(c Integer)  : void
++  storageStrategyConfigList()  :  List
+
+}
+class im.zhaojun.zfile.service.impl.FtpServiceImpl {
+-  domain : c String
+-  ftp : c Ftp
+-  host : c String
+-  password : c String
+-  port : c String
+-  storageConfigService : c StorageConfigService
+-  username : c String
+--
++   FtpServiceImpl() 
++  fileList(c String)  :  List
++  getDownloadUrl(c String)  :  String
++  getFileItem(c String)  :  FileItemDTO
++  getStorageTypeEnum()  :  StorageTypeEnum
++  init(c Integer)  : void
++  storageStrategyConfigList()  :  List
+
+}
+class im.zhaojun.zfile.service.impl.OneDriveServiceImpl {
+#  clientId : c String
+#  clientSecret : c String
+#  redirectUri : c String
+#  scope : c String
+-  storageConfigService : c StorageConfigService
+--
++   OneDriveServiceImpl() 
++  getAuthenticateEndPoint()  :  String
++  getClientId()  :  String
++  getClientSecret()  :  String
++  getGraphEndPoint()  :  String
++  getRedirectUri()  :  String
++  getScope()  :  String
++  getStorageTypeEnum()  :  StorageTypeEnum
++  init(c Integer)  : void
+
+}
+class im.zhaojun.zfile.service.impl.TencentServiceImpl {
+--
++   TencentServiceImpl() 
++  getStorageTypeEnum()  :  StorageTypeEnum
++  init(c Integer)  : void
++  storageStrategyConfigList()  :  List
+
+}
+class im.zhaojun.zfile.service.SystemConfigService {
+-  driveConfigService : c DriveConfigService
+-  systemConfigClazz :  Class< SystemConfigDTO>
+-  systemConfigRepository : i SystemConfigRepository
+-  zFileCache : c ZFileCache
+--
++   SystemConfigService() 
++  getAdminUsername()  :  String
++  getDomain()  :  String
++  getIsInstall()  : boolean
++  getSystemConfig()  :  SystemConfigDTO
++  getSystemFrontConfig(c Integer)  :  SystemFrontConfigDTO
++  updateSystemConfig(c SystemConfigDTO)  : void
++  updateUsernameAndPwd(c String, c String)  : void
+
+}
+class im.zhaojun.zfile.service.base.AbstractSharePointServiceBase {
+#  siteId : c String
+--
++   AbstractSharePointServiceBase() 
++  getDownloadUrl(c String)  :  String
++  getType()  :  String
++  storageStrategyConfigList()  :  List
+
+}
+
+class im.zhaojun.zfile.service.FilterConfigService {
+-  filterConfigRepository : i FilterConfigRepository
+--
++   FilterConfigService() 
++  batchSave( List< FilterConfig>, c Integer)  : void
++  filterResultIsHidden(c Integer, c String)  : boolean
++  findByDriveId(c Integer)  :  List
+
+}
+class im.zhaojun.zfile.service.base.MicrosoftDriveServiceBase {
+#  AUTHENTICATE_URL : c String
+#  DRIVER_ITEMS_URL : c String
+#  DRIVER_ITEM_URL : c String
+#  DRIVER_ROOT_URL : c String
+#  proxyDomain : c String
+-  ONE_DRIVE_FILE_FLAG : c String
+-  oneDriveRestTemplate : c RestTemplate
+-  storageConfigRepository : i StorageConfigRepository
+-  storageConfigService : c StorageConfigService
+--
++   MicrosoftDriveServiceBase() 
++  fileList(c String)  :  List
++  getAuthenticateEndPoint()  :  String
++  getClientId()  :  String
++  getClientSecret()  :  String
++  getFileItem(c String)  :  FileItemDTO
++  getGraphEndPoint()  :  String
++  getRedirectUri()  :  String
++  getRefreshToken()  :  OneDriveToken
++  getScope()  :  String
++  getToken(c String)  :  OneDriveToken
++  getType()  :  String
++  refreshOneDriveToken()  : void
+
+}
+class im.zhaojun.zfile.service.impl.HuaweiServiceImpl {
+--
++   HuaweiServiceImpl() 
++  getStorageTypeEnum()  :  StorageTypeEnum
++  init(c Integer)  : void
++  storageStrategyConfigList()  :  List
+
+}
+interface im.zhaojun.zfile.service.base.BaseFileService {
+--
++  fileList(c String)  :  List
++  getDownloadUrl(c String)  :  String
+
+}
+class im.zhaojun.zfile.service.impl.UFileServiceImpl {
+--
++   UFileServiceImpl() 
++  getStorageTypeEnum()  :  StorageTypeEnum
+
+}
+
+class im.zhaojun.zfile.service.impl.LocalServiceImpl {
+-  filePath : c String
+-  storageConfigService : c StorageConfigService
+-  systemConfigRepository : i SystemConfigRepository
+--
++   LocalServiceImpl() 
++  fileList(c String)  :  List
++  getDownloadUrl(c String)  :  String
++  getFileItem(c String)  :  FileItemDTO
++  getFilePath()  :  String
++  getStorageTypeEnum()  :  StorageTypeEnum
++  init(c Integer)  : void
++  setFilePath(c String)  : void
++  storageStrategyConfigList()  :  List
+
+}
+class im.zhaojun.zfile.service.ShortLinkConfigService {
+-  shortLinkConfigRepository : i ShortLinkConfigRepository
+--
++   ShortLinkConfigService() 
++  deleteById(c Integer)  : void
++  find(c String, c String, c String, c String, c Integer, c Integer, c String, c String)  :  Page
++  findById(c Integer)  :  ShortLinkConfig
++  findByKey(c String)  :  ShortLinkConfig
++  findByUrl(c String)  :  ShortLinkConfig
++  save(c ShortLinkConfig)  : void
+
+}
+
+class im.zhaojun.zfile.service.impl.SharePointChinaServiceImpl {
+-  clientId : c String
+-  clientSecret : c String
+-  redirectUri : c String
+-  scope : c String
+-  storageConfigService : c StorageConfigService
+--
++   SharePointChinaServiceImpl() 
++  getAuthenticateEndPoint()  :  String
++  getClientId()  :  String
++  getClientSecret()  :  String
++  getGraphEndPoint()  :  String
++  getRedirectUri()  :  String
++  getScope()  :  String
++  getStorageTypeEnum()  :  StorageTypeEnum
++  init(c Integer)  : void
+
+}
+class im.zhaojun.zfile.service.base.AbstractS3BaseFileService {
+#  bucketName : c String
+#  domain : c String
+#  isPrivate : boolean
+#  path : c String
+#  s3Client : i AmazonS3
+#  storageConfigService : c StorageConfigService
+--
++   AbstractS3BaseFileService() 
++  fileList(c String)  :  List
++  getDownloadUrl(c String)  :  String
++  getFileItem(c String)  :  FileItemDTO
++  s3FileList(c String)  :  List
++  s3ObjectUrl(c String)  :  String
+
+}
+class im.zhaojun.zfile.service.impl.AliyunServiceImpl {
+--
++   AliyunServiceImpl() 
++  getStorageTypeEnum()  :  StorageTypeEnum
++  init(c Integer)  : void
++  storageStrategyConfigList()  :  List
+
+}
+class im.zhaojun.zfile.service.impl.QiniuServiceImpl {
+--
++   QiniuServiceImpl() 
++  getStorageTypeEnum()  :  StorageTypeEnum
++  init(c Integer)  : void
++  storageStrategyConfigList()  :  List
+
+}
+class im.zhaojun.zfile.service.impl.OneDriveChinaServiceImpl {
+-  clientId : c String
+-  clientSecret : c String
+-  redirectUri : c String
+-  scope : c String
+-  storageConfigService : c StorageConfigService
+--
++   OneDriveChinaServiceImpl() 
++  getAuthenticateEndPoint()  :  String
++  getClientId()  :  String
++  getClientSecret()  :  String
++  getGraphEndPoint()  :  String
++  getRedirectUri()  :  String
++  getScope()  :  String
++  getStorageTypeEnum()  :  StorageTypeEnum
++  init(c Integer)  : void
+
+}
+class im.zhaojun.zfile.service.StorageConfigService {
+-  storageConfigRepository : i StorageConfigRepository
+--
++   StorageConfigService() 
++  findByDriveIdAndKey(c Integer, c String)  :  StorageConfig
++  selectStorageConfigByDriveId(c Integer)  :  List
++  selectStorageConfigByType(c StorageTypeEnum)  :  List
++  selectStorageConfigMapByDriveId(c Integer)  :  Map
++  selectStorageConfigMapByKey(c StorageTypeEnum)  :  Map
++  updateStorageConfig( List< StorageConfig>)  : void
+
+}
+
+class im.zhaojun.zfile.service.impl.SharePointServiceImpl {
+#  clientId : c String
+#  clientSecret : c String
+#  redirectUri : c String
+#  scope : c String
+-  storageConfigService : c StorageConfigService
+--
++   SharePointServiceImpl() 
++  getAuthenticateEndPoint()  :  String
++  getClientId()  :  String
++  getClientSecret()  :  String
++  getGraphEndPoint()  :  String
++  getRedirectUri()  :  String
++  getScope()  :  String
++  getStorageTypeEnum()  :  StorageTypeEnum
++  init(c Integer)  : void
+
+}
+class im.zhaojun.zfile.service.impl.UpYunServiceImpl {
+-  END_MARK : c String
+-  basePath : c String
+-  domain : c String
+-  storageConfigService : c StorageConfigService
+-  upYun : c UpYun
+--
++   UpYunServiceImpl() 
++  fileList(c String)  :  List
++  getDownloadUrl(c String)  :  String
++  getFileItem(c String)  :  FileItemDTO
++  getStorageTypeEnum()  :  StorageTypeEnum
++  init(c Integer)  : void
++  storageStrategyConfigList()  :  List
+
+}
+class im.zhaojun.zfile.service.base.AbstractBaseFileService {
+#  basePath : c String
+#  isInitialized : boolean
+#  timeout : c Long
++  driveId : c Integer
+-  zFileCache : c ZFileCache
+--
++   AbstractBaseFileService() 
+#  testConnection()  : void
++  clearFileCache()  : void
++  fileList(c String)  :  List
++  getDriveId()  :  Integer
++  getFileItem(c String)  :  FileItemDTO
++  getIsInitialized()  : boolean
++  getIsUnInitialized()  : boolean
++  getStorageTypeEnum()  :  StorageTypeEnum
++  init(c Integer)  : void
++  mergeStrategyConfig( Map< String, StorageConfig>)  : void
++  search(c String)  :  List
++  setDriveId(c Integer)  : void
++  storageStrategyConfigList()  :  List
+
+}
+
+class im.zhaojun.zfile.controller.admin.DriveController {
+-  driveConfigService : c DriveConfigService
+-  filterConfigService : c FilterConfigService
+--
++   DriveController() 
++  deleteDriveItem(c Integer)  :  ResultBean
++  disable(c Integer)  :  ResultBean
++  driveItem(c Integer)  :  ResultBean
++  driveList()  :  ResultBean
++  enable(c Integer)  :  ResultBean
++  getFilters(c Integer)  :  ResultBean
++  saveDriveDrag( List< JSONObject>)  :  ResultBean
++  saveDriveItem(c DriveConfigDTO)  :  ResultBean
++  saveFilters( List< FilterConfig>, c Integer)  :  ResultBean
++  updateDriveId(c Integer, c Integer)  :  ResultBean
+
+}
+
+class im.zhaojun.zfile.controller.home.FileController {
+-  debug : c Boolean
+-  driveConfigService : c DriveConfigService
+-  driveContext : c DriveContext
+-  filterConfigService : c FilterConfigService
+-  log : i Logger
+-  systemConfigService : c SystemConfigService
+--
++   FileController() 
++  drives()  :  ResultBean
++  list(c Integer, c String, c String, c String, c String)  :  ResultBean
+-  filterFileList( List< FileItemDTO>, c Integer)  : void
+-  matchPassword(c String, c String)  : boolean
+-  verifyPassword( List< FileItemDTO>, c Integer, c String, c String)  :  VerifyResult
+
+}
+
+' Relations 
+
+im.zhaojun.zfile.controller.admin.AdminController "1"  o-down-  "1" im.zhaojun.zfile.service.SystemConfigService
+im.zhaojun.zfile.controller.admin.DriveController "1"  o-down-  "1" im.zhaojun.zfile.service.DriveConfigService
+im.zhaojun.zfile.controller.admin.DriveController "1"  o-down-  "1" im.zhaojun.zfile.service.FilterConfigService
+im.zhaojun.zfile.controller.home.FileController "1"  o-down-  "1" im.zhaojun.zfile.service.DriveConfigService 
+im.zhaojun.zfile.controller.home.FileController "1"  o-down-  "1" im.zhaojun.zfile.service.SystemConfigService 
+im.zhaojun.zfile.controller.home.FileController "1"  o-down-  "1" im.zhaojun.zfile.service.FilterConfigService 
+im.zhaojun.zfile.controller.home.FileController "1"  o-down-  "1" im.zhaojun.zfile.service.base.AbstractBaseFileService
+
+
+' Server class
+im.zhaojun.zfile.service.DriveConfigService "1"  o-down-  "1" im.zhaojun.zfile.repository.DriverConfigRepository  : driverConfigRepository: i DriverConfigRepository
+im.zhaojun.zfile.service.DriveConfigService "1"  o-down-  "1" im.zhaojun.zfile.repository.FilterConfigRepository  : filterConfigRepository: i FilterConfigRepository
+im.zhaojun.zfile.service.DriveConfigService "1"  o-down-  "1" im.zhaojun.zfile.repository.ShortLinkConfigRepository  : shortLinkConfigRepository: i ShortLinkConfigRepository
+im.zhaojun.zfile.service.DriveConfigService "1"  o-down-  "1" im.zhaojun.zfile.repository.StorageConfigRepository  : storageConfigRepository: i StorageConfigRepository
+im.zhaojun.zfile.service.StorageConfigService "1"  o-down-  "1" im.zhaojun.zfile.repository.StorageConfigRepository  : storageConfigRepository: i StorageConfigRepository
+im.zhaojun.zfile.service.FilterConfigService "1"  o-down-  "1" im.zhaojun.zfile.repository.FilterConfigRepository  : filterConfigRepository: i FilterConfigRepository
+im.zhaojun.zfile.service.SystemConfigService "1"  o-down-  "1" im.zhaojun.zfile.repository.SystemConfigRepository  : systemConfigRepository: i SystemConfigRepository
+'im.zhaojun.zfile.service.ShortLinkConfigService "1"  o-down-  "1" im.zhaojun.zfile.repository.ShortLinkConfigRepository  : shortLinkConfigRepository: i ShortLinkConfigRepository
+im.zhaojun.zfile.service.SystemConfigService "1"  o-left-  "1" im.zhaojun.zfile.service.DriveConfigService  : driveConfigService: c DriveConfigService
+
+im.zhaojun.zfile.service.DriveConfigService "1"  o-down-  "1" im.zhaojun.zfile.service.base.AbstractBaseFileService
+
+im.zhaojun.zfile.service.DriveConfigService "1"  o-up-  "1" im.zhaojun.zfile.cache.ZFileCache
+
+
+' Server Abstract Class
+im.zhaojun.zfile.service.base.AbstractBaseFileService  ..up|>  im.zhaojun.zfile.service.base.BaseFileService
+'im.zhaojun.zfile.service.base.AbstractS3BaseFileService "1"  o-up-  "1" im.zhaojun.zfile.service.StorageConfigService  : storageConfigService: c StorageConfigService
+'im.zhaojun.zfile.service.base.AbstractOneDriveServiceBase  -left|>  im.zhaojun.zfile.service.base.MicrosoftDriveServiceBase
+'im.zhaojun.zfile.service.base.AbstractS3BaseFileService  -up|>  im.zhaojun.zfile.service.base.AbstractBaseFileService
+'im.zhaojun.zfile.service.base.AbstractSharePointServiceBase  -left|>  im.zhaojun.zfile.service.base.MicrosoftDriveServiceBase
+'im.zhaojun.zfile.service.base.MicrosoftDriveServiceBase  -up|>  im.zhaojun.zfile.service.base.AbstractBaseFileService
+'im.zhaojun.zfile.service.base.MicrosoftDriveServiceBase "1"  o-left-  "1" im.zhaojun.zfile.service.StorageConfigService  : storageConfigService: c StorageConfigService
+'im.zhaojun.zfile.service.base.MicrosoftDriveServiceBase "1"  o-up-  "1" im.zhaojun.zfile.repository.StorageConfigRepository  : storageConfigRepository: i StorageConfigRepository
+
+' Server Impl Class
+'im.zhaojun.zfile.service.impl.AliyunServiceImpl  -right|>  im.zhaojun.zfile.service.base.AbstractS3BaseFileService
+'im.zhaojun.zfile.service.impl.AliyunServiceImpl  ..right|>  im.zhaojun.zfile.service.base.BaseFileService
+'im.zhaojun.zfile.service.impl.FtpServiceImpl  -left|>  im.zhaojun.zfile.service.base.AbstractBaseFileService
+'im.zhaojun.zfile.service.impl.FtpServiceImpl  ..left|>  im.zhaojun.zfile.service.base.BaseFileService
+'im.zhaojun.zfile.service.impl.FtpServiceImpl "1"  o-left-  "1" im.zhaojun.zfile.service.StorageConfigService  : storageConfigService: c StorageConfigService
+'im.zhaojun.zfile.service.impl.HuaweiServiceImpl  -right|>  im.zhaojun.zfile.service.base.AbstractS3BaseFileService
+'im.zhaojun.zfile.service.impl.HuaweiServiceImpl  ..right|>  im.zhaojun.zfile.service.base.BaseFileService
+im.zhaojun.zfile.service.impl.LocalServiceImpl  -up|>  im.zhaojun.zfile.service.base.AbstractBaseFileService
+'im.zhaojun.zfile.service.impl.LocalServiceImpl  ..right|>  im.zhaojun.zfile.service.base.BaseFileService
+im.zhaojun.zfile.service.impl.LocalServiceImpl "1"  o-up-  "1" im.zhaojun.zfile.repository.SystemConfigRepository  : systemConfigRepository: i SystemConfigRepository
+im.zhaojun.zfile.service.impl.LocalServiceImpl "1"  o-left-  "1" im.zhaojun.zfile.service.StorageConfigService  : storageConfigService: c StorageConfigService
+'im.zhaojun.zfile.service.impl.MinIOServiceImpl  -right|>  im.zhaojun.zfile.service.base.AbstractS3BaseFileService
+'im.zhaojun.zfile.service.impl.MinIOServiceImpl  ..right|>  im.zhaojun.zfile.service.base.BaseFileService
+'im.zhaojun.zfile.service.impl.OneDriveChinaServiceImpl  -right|>  im.zhaojun.zfile.service.base.AbstractOneDriveServiceBase
+'im.zhaojun.zfile.service.impl.OneDriveChinaServiceImpl  ..right|>  im.zhaojun.zfile.service.base.BaseFileService
+'im.zhaojun.zfile.service.impl.OneDriveChinaServiceImpl "1"  o-left-  "1" im.zhaojun.zfile.service.StorageConfigService  : storageConfigService: c StorageConfigService
+'im.zhaojun.zfile.service.impl.OneDriveServiceImpl  -right|>  im.zhaojun.zfile.service.base.AbstractOneDriveServiceBase
+'im.zhaojun.zfile.service.impl.OneDriveServiceImpl  ..right|>  im.zhaojun.zfile.service.base.BaseFileService
+'im.zhaojun.zfile.service.impl.OneDriveServiceImpl "1"  o-left-  "1" im.zhaojun.zfile.service.StorageConfigService  : storageConfigService: c StorageConfigService
+'im.zhaojun.zfile.service.impl.QiniuServiceImpl  -right|>  im.zhaojun.zfile.service.base.AbstractS3BaseFileService
+'im.zhaojun.zfile.service.impl.QiniuServiceImpl  ..right|>  im.zhaojun.zfile.service.base.BaseFileService
+'im.zhaojun.zfile.service.impl.S3ServiceImpl  -right|>  im.zhaojun.zfile.service.base.AbstractS3BaseFileService
+'im.zhaojun.zfile.service.impl.S3ServiceImpl  ..right|>  im.zhaojun.zfile.service.base.BaseFileService
+'im.zhaojun.zfile.service.impl.SharePointChinaServiceImpl  -right|>  im.zhaojun.zfile.service.base.AbstractSharePointServiceBase
+'im.zhaojun.zfile.service.impl.SharePointChinaServiceImpl  ..right|>  im.zhaojun.zfile.service.base.BaseFileService
+'im.zhaojun.zfile.service.impl.SharePointChinaServiceImpl "1"  o-left-  "1" im.zhaojun.zfile.service.StorageConfigService  : storageConfigService: c StorageConfigService
+'im.zhaojun.zfile.service.impl.SharePointServiceImpl  -right|>  im.zhaojun.zfile.service.base.AbstractSharePointServiceBase
+'im.zhaojun.zfile.service.impl.SharePointServiceImpl  ..right|>  im.zhaojun.zfile.service.base.BaseFileService
+'im.zhaojun.zfile.service.impl.SharePointServiceImpl "1"  o-left-  "1" im.zhaojun.zfile.service.StorageConfigService  : storageConfigService: c StorageConfigService
+'im.zhaojun.zfile.service.impl.TencentServiceImpl  -right|>  im.zhaojun.zfile.service.base.AbstractS3BaseFileService
+'im.zhaojun.zfile.service.impl.TencentServiceImpl  ..right|>  im.zhaojun.zfile.service.base.BaseFileService
+'im.zhaojun.zfile.service.impl.UFileServiceImpl  -up|>  im.zhaojun.zfile.service.impl.UpYunServiceImpl
+'im.zhaojun.zfile.service.impl.UpYunServiceImpl  -right|>  im.zhaojun.zfile.service.base.AbstractBaseFileService
+'im.zhaojun.zfile.service.impl.UpYunServiceImpl  ..right|>  im.zhaojun.zfile.service.base.BaseFileService
+'im.zhaojun.zfile.service.impl.UpYunServiceImpl "1"  o-left-  "1" im.zhaojun.zfile.service.StorageConfigService  : storageConfigService: c StorageConfigService
+'im.zhaojun.zfile.service.impl.WebdavServiceImpl  -right|>  im.zhaojun.zfile.service.base.AbstractBaseFileService
+'im.zhaojun.zfile.service.impl.WebdavServiceImpl "1"  o-left-  "1" im.zhaojun.zfile.service.StorageConfigService  : storageConfigService: c StorageConfigService
+
+' Notes 
+
+@enduml
