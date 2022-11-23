@@ -2,11 +2,7 @@ package im.zhaojun.zfile.config.inspector;
 
 import java.util.Map;
 
-import com.amazonaws.xray.AWSXRay;
-import com.amazonaws.xray.AWSXRayRecorderBuilder;
 import com.amazonaws.xray.entities.Subsegment;
-import com.amazonaws.xray.plugins.EC2Plugin;
-import com.amazonaws.xray.plugins.ECSPlugin;
 import com.amazonaws.xray.spring.aop.AbstractXRayInterceptor;
 
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -18,14 +14,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class XRayInspector extends AbstractXRayInterceptor {
 
-	static {
-		AWSXRayRecorderBuilder builder = AWSXRayRecorderBuilder
-				.standard()
-				.withPlugin(new EC2Plugin())
-				.withPlugin(new ECSPlugin())
-				.withSegmentListener(new Log4JSegmentListener());
-		AWSXRay.setGlobalRecorder(builder.build());
-	}
+	//	static {
+	//		AWSXRayRecorderBuilder builder = AWSXRayRecorderBuilder
+	//				.standard()
+	//				.withSegmentListener(new SegmentListener());
+	//		AWSXRay.setGlobalRecorder(builder.build());
+	//	}
 
 	@Override
 	protected Map<String, Map<String, Object>> generateMetadata(ProceedingJoinPoint proceedingJoinPoint,
