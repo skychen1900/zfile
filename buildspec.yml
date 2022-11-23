@@ -11,10 +11,11 @@ phases:
     commands:
       - echo Build started on `date`
       - mvn clean package
+      - mv target/zfile-3.2.5.jar zfile-eb.jar
   post_build:
     commands:
       - echo Build completed on `date`
 artifacts:
   files:
-    - target/zfile-3.2.5.jar
+    - zfile-eb.jar
     - .ebextensions/**/*
