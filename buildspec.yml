@@ -14,8 +14,7 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
-      - mv target/zfile-eb.zip zfile-eb.zip
 artifacts:
   files:
-    - zfile-eb.zip
+    - target/zfile-3.2.5.jar
     - .ebextensions/**/*
