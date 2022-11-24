@@ -1,1 +1,1 @@
-web: java -jar zfile-3.2.5.jar
+web: java -jar zfile-3.2.5.jar -Xms256m

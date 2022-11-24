@@ -61,18 +61,6 @@
 			<version>1.91.0</version>
 		</dependency>
 
-		<!--Druid starter -->
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid-spring-boot-starter</artifactId>
-			<version>${druid.versin}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid</artifactId>
-			<version>${druid.versin}</version>
-		</dependency>
-
 		<!-- spring boot 官方相关 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -246,5 +234,24 @@
 		</plugins>
 
 	</build>
+	
+	<profiles>
+	   <profile>
+	       <id>druid</id>
+	           <dependencies>
+			        <!--Druid starter -->
+			        <dependency>
+			            <groupId>com.alibaba</groupId>
+			            <artifactId>druid-spring-boot-starter</artifactId>
+			            <version>${druid.versin}</version>
+			        </dependency>
+			        <dependency>
+			            <groupId>com.alibaba</groupId>
+			            <artifactId>druid</artifactId>
+			            <version>${druid.versin}</version>
+			        </dependency>
+	           </dependencies>
+	   </profile>
+	</profiles>
 
 </project>
