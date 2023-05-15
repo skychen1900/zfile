@@ -83,9 +83,13 @@
     <logger name="com.alicp" additivity="false" level="debug"/>
 
     <!-- hibernate logger -->
-    <logger name="org.hibernate.SQL" additivity="false" level="debug"/>
+    <logger name="org.hibernate.SQL" additivity="false" level="debug">
+        <appender-ref ref="appLogAppender"/>"
+    </logger>
     <!--   show bind parameter values -->
-    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="trace"/>
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="trace">
+        <appender-ref ref="appLogAppender"/>"
+    </logger>
 
     <springProfile name="dev">
         <logger name="im.zhaojun" additivity="true" level="debug"/>

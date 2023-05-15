@@ -157,12 +157,21 @@ spring:
     hibernate:
       ddl-auto: update
     properties:
+      javax:
+        persistence:
+          schema-generation:
+            create-source: metadata
+            scripts:
+              action: create
+              create-target: create.sql
       hibernate:
-        format_sql: true
-    #show-sql: true    # Show SQL statement
+        format_sql: false
+    # Show SQL statement
+    show-sql: true
     generate-ddl: true
+    # 初期化順序を、Hibernate → SQLにします
     defer-datasource-initialization: true
-    
+
   ## Profile
   profiles:
     active: prod
@@ -174,6 +183,22 @@ spring:
       mode: always
       data-locations: classpath*:db/*data.sql
       encoding: utf-8
+
+
+##########################
+#                        #
+##########################
+logging:
+  level:
+    org:
+      hibernate:
+        SQL:
+          TRACE
+        type:
+          descriptor:
+            sql:
+              BasicBinder:
+                TRACE
 
 #########################
 #  APM  (9/9)           #
