@@ -11,8 +11,6 @@ import java.util.Objects;
 
 import javax.annotation.Resource;
 
-import com.amazonaws.xray.spring.aop.XRayEnabled;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -41,7 +39,8 @@ import im.zhaojun.zfile.util.StringUtils;
  */
 @Service
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-@XRayEnabled
+//@XRayEnabled
+//TODO
 public class LocalServiceImpl extends AbstractBaseFileService implements BaseFileService {
 
 	private static final Logger log = LoggerFactory.getLogger(LocalServiceImpl.class);

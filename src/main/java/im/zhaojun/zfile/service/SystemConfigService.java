@@ -1,5 +1,14 @@
 package im.zhaojun.zfile.service;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Service;
+
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
@@ -12,13 +21,6 @@ import im.zhaojun.zfile.model.entity.DriveConfig;
 import im.zhaojun.zfile.model.entity.SystemConfig;
 import im.zhaojun.zfile.repository.SystemConfigRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
-import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author zhaojun
@@ -101,6 +103,10 @@ public class SystemConfigService {
                     systemConfigList.add(systemConfig);
                 }
             }
+        }
+        
+        if (systemConfigList.isEmpty()) {
+        	log.error("SystemConfig为空");
         }
 
         zFileCache.removeConfig();
