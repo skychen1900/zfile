@@ -91,11 +91,13 @@
     	<appender-ref ref="appLogAppender"/>
     </logger>
     <logger name="org.flywaydb" level="debug">
-    	<appender-ref ref="appLogAppender"/>
+    	<appender-ref ref="stdout"/>
     </logger>
+    <!--   
     <logger name="org.flywaydb.core.internal.dbsupport.SqlScript" level="DEBUG">
     	<appender-ref ref="appLogAppender"/>
     </logger>
+    -->
     <logger name="im.zhaojun" level="debug">
     	<appender-ref ref="appLogAppender"/>
     </logger>
