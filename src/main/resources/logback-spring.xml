@@ -21,7 +21,7 @@
     <property name="appName" value="zfile"/>
 
     <!-- ch.qos.logback.core.ConsoleAppender 表示控制台输出 -->
-    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
         <springProfile name="prod">
             <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
                 <level>INFO</level>
@@ -31,7 +31,7 @@
         <layout class="ch.qos.logback.classic.PatternLayout">
             <pattern>%clr(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(%-6L){yellow} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}</pattern>
         </layout>
-    </appender>
+    </appender> 
 
     <!-- 滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件 -->
     <appender name="appLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -94,6 +94,9 @@
     	<appender-ref ref="appLogAppender"/>
     </logger>
     <logger name="org.flywaydb.core.internal.dbsupport.SqlScript" level="DEBUG">
+    	<appender-ref ref="appLogAppender"/>
+    </logger>
+    <logger name="im.zhaojun" level="debug">
     	<appender-ref ref="appLogAppender"/>
     </logger>
     <springProfile name="dev">

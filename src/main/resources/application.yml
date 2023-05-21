@@ -67,8 +67,8 @@ spring:
     username: zfile
     password: 123456
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:${zfile.db.path};DB_CLOSE_ON_EXIT=FALSE;AUTO_SERVER=TRUE  # ←ファイルモード
-    #url: jdbc:h2:mem:zfile  # ←インメモリDB
+    #url: jdbc:h2:${zfile.db.path};DB_CLOSE_ON_EXIT=FALSE;AUTO_SERVER=TRUE  # ←ファイルモード
+    url: jdbc:h2:mem:zfile  # ←インメモリDB
     platform: h2 
      
     # druid on/off
@@ -177,8 +177,8 @@ spring:
   
   # flyway
   flyway:
-    enable: true
     baseline-on-migrate : true # 既にあるデータベースでもマイグレーションを実行する
+    locations: classpath:db/migration, s3:jp.skychen-flyway.test230520
 
 #########################
 #  APM  (9/9)           #

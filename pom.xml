@@ -20,10 +20,27 @@
 		<java.version>1.8</java.version>
 		<log4j2.version>2.17.1</log4j2.version>
 		<druid.versin>1.2.8</druid.versin>
+		<aws.java.sdk.version>2.20.20</aws.java.sdk.version>
 	</properties>
 	<packaging>jar</packaging>
-	
+	<dependencyManagement>
+  		<dependencies>
+			<dependency>
+		        <groupId>software.amazon.awssdk</groupId>
+		        <artifactId>bom</artifactId>
+		        <version>${aws.java.sdk.version}</version>
+		        <type>pom</type>
+		        <scope>import</scope>
+			</dependency>
+  		</dependencies>
+  	</dependencyManagement>
 	<dependencies>
+		
+		<!-- flyway s3 location -->
+		  <dependency>
+		      <groupId>software.amazon.awssdk</groupId>
+		      <artifactId>s3</artifactId>
+		  </dependency>
 		
 		<!-- Javamelody -->
  		<dependency>
@@ -90,7 +107,7 @@
 			<artifactId>java-sdk</artifactId>
 			<version>4.1.3</version>
 		</dependency>
-		<dependency>
+ 		<dependency>
 			<groupId>com.amazonaws</groupId>
 			<artifactId>aws-java-sdk-s3</artifactId>
 			<version>1.11.699</version>
