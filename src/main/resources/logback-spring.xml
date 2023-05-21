@@ -112,8 +112,8 @@
         要么是定义的logger，要么是root，判断的关键在于找到这个logger，然后判断这个logger的appender和level。
     -->
     <root>
-        <!--<appender-ref ref="stdout"/>-->
-         <appender-ref ref="appLogAppender"/> 
+        <appender-ref ref="stdout"/>
+        <appender-ref ref="appLogAppender"/> 
     </root>
 
 </configuration>
