@@ -24,7 +24,7 @@
      <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
         <springProfile name="prod">
             <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-                <level>INFO</level>
+                <level>DEBUG</level>
             </filter>
         </springProfile>
 
@@ -84,11 +84,11 @@
 
     <!-- hibernate logger -->
     <logger name="org.hibernate.SQL" additivity="false" level="debug">
-    	<appender-ref ref="appLogAppender"/>
+    	<appender-ref ref="stdout"/>
     </logger>
     <!--   show bind parameter values -->
     <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="trace">
-    	<appender-ref ref="appLogAppender"/>
+    	<appender-ref ref="stdout"/>
     </logger>
     <logger name="org.flywaydb" level="debug">
     	<appender-ref ref="stdout"/>
@@ -99,7 +99,7 @@
     </logger>
     -->
     <logger name="im.zhaojun" level="debug">
-    	<appender-ref ref="appLogAppender"/>
+    	<appender-ref ref="stdout"/>
     </logger>
     <springProfile name="dev">
         <logger name="im.zhaojun" additivity="true" level="debug"/>
@@ -115,7 +115,7 @@
     -->
     <root>
         <appender-ref ref="stdout"/>
-        <appender-ref ref="appLogAppender"/> 
+        <!--<appender-ref ref="appLogAppender"/> -->
     </root>
 
 </configuration>
